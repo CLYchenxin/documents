@@ -1,0 +1,253 @@
+<!DOCTYPE html><html><head><title>01 C语言变量和函数的作用域</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: Arial, 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        <div id="wmd-preview" class="preview-content"></div>
+                    <div id="wmd-preview-section-32" class="wmd-preview-section preview-content">
+
+<div><div class="toc"><div class="toc">
+<ul>
+<li><a href="#01-c语言变量和函数的作用域">01 C语言变量和函数的作用域</a><ul>
+<li><ul>
+<li><a href="#1变量存储类型">1、变量存储类型</a><ul>
+<li><ul>
+<li><a href="#1作用域">（1）作用域</a></li>
+<li><a href="#2链接">（2）链接</a></li>
+<li><a href="#3存储时期">（3）存储时期</a></li>
+<li><a href="#4自动变量">（4）自动变量</a></li>
+<li><a href="#5寄存器变量">（5）寄存器变量</a></li>
+<li><a href="#6具有代码块作用域的静态变量">（6）具有代码块作用域的静态变量</a></li>
+<li><a href="#7具有外部链接的静态变量">（7）具有外部链接的静态变量</a><ul>
+<li><a href="#1外部变量的初始化">1、外部变量的初始化</a></li>
+<li><a href="#2定义和声明">2、定义和声明</a></li>
+<li><a href="#3多文件中使用外部变量">3、多文件中使用外部变量</a></li>
+<li><a href="#4在c语言中定义常量">4、在C语言中定义常量</a></li>
+</ul>
+</li>
+<li><a href="#8具有内部链接的静态变量">（8）具有内部链接的静态变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2函数作用域">2、函数作用域</a><ul>
+<li><ul>
+<li><a href="#1静态函数">（1）静态函数</a></li>
+<li><a href="#2外部函数">（2）外部函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div><div id="wmd-preview-section-1335" class="wmd-preview-section preview-content">
+
+<h1 id="01-c语言变量和函数的作用域">01 C语言变量和函数的作用域</h1></div><div id="wmd-preview-section-34" class="wmd-preview-section preview-content">
+
+<h3 id="1变量存储类型">1、变量存储类型</h3>
+
+</div><div id="wmd-preview-section-1647" class="wmd-preview-section preview-content">
+
+<h5 id="1作用域">（1）作用域</h5>
+
+<p>作用域描述了变量的访问区域，一个C变量的作用域有：代码块作用域、函数原型作用域、文件作用域。 <br>
+代码块作用域：包含在开始花括号和对应的结束花括号之间的一段代码，在代码块中定义的变量具有代码块作用域，从该变量被定义的地方到包含该定义的代码块的末尾均可见。 <br>
+函数原型作用域：适用于函数原型中使用的变量名，如下所示：</p></div><div id="wmd-preview-section-1679" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs aspectj"><span class="hljs-comment line-number">1.</span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">migthy</span><span class="hljs-params">(<span class="hljs-keyword">int</span> mouse, <span class="hljs-keyword">double</span> large)</span></span>;<br></code></pre>
+
+<p>函数原型作用域从变量定义处一直到函数声明的末尾。这意味着编译器在处理一个函数原型的参数时，它所关心的只是该参数的类型，使用的名字通常是无关紧要的，不需要使他们和在函数定义中使用的变量名保持一致。 <br>
+文件作用域：一个在所有函数之外定义的变量。具有文件作用域的变量从它定义处到文件（包含该变量定义的文件）结尾处都是可见的。文件作用域变量也被称为全局变量。</p></div><div id="wmd-preview-section-37" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">int</span> units = <span class="hljs-number">0</span>; <span class="hljs-comment">// 文件作用域</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">critic</span><span class="hljs-params">(<span class="hljs-keyword">int</span>)</span></span>;<br><span class="hljs-comment line-number">3.</span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br><span class="hljs-comment line-number">4.</span>}<br><span class="hljs-comment line-number">5.</span><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">critic</span><span class="hljs-params">(<span class="hljs-keyword">int</span> c)</span> </span>{ <span class="hljs-comment">// 变量c为函数原型作用域</span><br><span class="hljs-comment line-number">6.</span>    <span class="hljs-keyword">int</span> a; <span class="hljs-comment">// 变量a为代码块作用域</span><br><span class="hljs-comment line-number">7.</span>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) { <span class="hljs-comment">// 变量i为代码块作用域</span><br><span class="hljs-comment line-number">8.</span>    }<br><span class="hljs-comment line-number">9.</span>}<br></code></pre>
+
+</div><div id="wmd-preview-section-1774" class="wmd-preview-section preview-content">
+
+<h5 id="2链接">（2）链接</h5>
+
+<p>一个C变量具有下列链接之一：外部链接、内部链接、空链接 <br>
+具有代码块作用域或者函数原型作用域的变量都是空链接，意味着它们是由其定义所在的代码块或函数原型私有的。 <br>
+具有文件作用域的变量可能有外部和内部链接。一个具有外部链接的变量可以在一个多文件程序的任何地方使用，一个具有内部链接的变量可以在一个文件的任何地方使用。 <br>
+内部链接变量的前面有static关键字， 没有的都是外部链接。</p></div><div id="wmd-preview-section-39" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">int</span> giants = <span class="hljs-number">5</span>; <span class="hljs-comment">// 文件作用域，外部链接</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> dodgers = <span class="hljs-number">3</span>; <span class="hljs-comment">// 文件作用域，内部链接</span><br><span class="hljs-comment line-number">3.</span><span class="hljs-keyword">int</span> main {<br><span class="hljs-comment line-number">4.</span>}<br></code></pre>
+
+</div><div id="wmd-preview-section-5589" class="wmd-preview-section preview-content">
+
+<h5 id="3存储时期">（3）存储时期</h5>
+
+<p>一个C变量有一下两种存储时期：静态存储时期、自动存储时期。 <br>
+如果一个变量具有静态存储时期，它在程序执行期间将一直存在。 <br>
+具有文件作用域的变量都具有静态存储时期。注意对于具有文件作用域的变量，关键词static表明链接类型，并非存储时期。一个使用static表明了文件作用域变量具有内部链接，而所有的文件作用域变量，无论它是否具有内部链接，还是外部链接，又具有静态存储时期。 <br>
+具有代码块作用域的变量一般具有自动存储时期。在程序进入这些变量的代码块时，将它这些变量分配内存；当退出这个代码块时，分配的内存将被释放。 <br>
+C使用作用域、链接和存储时期来定义5种存储类：自动、寄存器、具有代码块作用域的静态、具有外部链接的静态，以及具有内部链接的静态 <br>
+5种存储类</p>
+
+<table>
+<thead>
+<tr>
+  <th align="center">存储累</th>
+  <th align="center">时期</th>
+  <th align="center">作用域</th>
+  <th align="center">链接</th>
+  <th align="center">声明方式</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="center">自动</td>
+  <td align="center">自动</td>
+  <td align="center">代码块</td>
+  <td align="center">空</td>
+  <td align="center">代码块内</td>
+</tr>
+<tr>
+  <td align="center">寄存器</td>
+  <td align="center">自动</td>
+  <td align="center">代码块</td>
+  <td align="center">空</td>
+  <td align="center">代码块内，使用关键字register</td>
+</tr>
+<tr>
+  <td align="center">具有外部链接的静态</td>
+  <td align="center">静态</td>
+  <td align="center">文件</td>
+  <td align="center">外部</td>
+  <td align="center">所有函数之外</td>
+</tr>
+<tr>
+  <td align="center">具有内部链接的静态</td>
+  <td align="center">静态</td>
+  <td align="center">文件</td>
+  <td align="center">内部</td>
+  <td align="center">所有函数之外，使用关键字static</td>
+</tr>
+<tr>
+  <td align="center">空链接的静态</td>
+  <td align="center">静态</td>
+  <td align="center">代码块</td>
+  <td align="center">空</td>
+  <td align="center">代码块内，使用关键字static</td>
+</tr>
+</tbody></table>
+</div><div id="wmd-preview-section-1932" class="wmd-preview-section preview-content">
+
+<h5 id="4自动变量">（4）自动变量</h5>
+
+<p>属于自动存储类的变量具有自动存储时期、代码块作用域和空链接。默认情况下，在代码块或者函数的头部的任意变量都属于自动存储类。 <br>
+代码块作用域和空链接意味着，只有变量定义所在的代码块才能访问该变量。自动存储时期意味着，在程序进入包含变量声明的代码块时，变量就已经存在了，当程序离开这个代码块时，自动变量自动释放。 <br>
+自动变量不会默认初始化，如果您没有显式的初始化自动变量，否则他不会自动初始化，里面的值是任意的，不要指望这个值是0。</p></div><div id="wmd-preview-section-1964" class="wmd-preview-section preview-content">
+
+<h5 id="5寄存器变量">（5）寄存器变量</h5>
+
+<p>通常，变量存储在计算机内存中，寄存器变量可以被存储在CPU的寄存器中，或者存储在速度更能快的可用内存中，从而可以比普通变量更快的被访问和操作。因为寄存器变量多是存放在一个寄存器中，而不是内存中，所以无法获取寄存器变量的地址。但是在其他方面，寄存器变量与自动变量是一样的。通过使用关键字register来声明寄存器变量。 <br>
+可以把一个形式参数声明称寄存器变量，只需要在函数头部使用register关键字：</p></div><div id="wmd-preview-section-43" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span>     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">macho</span><span class="hljs-params">(<span class="hljs-keyword">register</span> <span class="hljs-keyword">int</span> n)</span></span>;<br></code></pre>
+
+<p>可以使用的register声明的类型是有限的。例如，处理器可能没有足够大的寄存器来容纳double类型。</p>
+
+</div><div id="wmd-preview-section-1997" class="wmd-preview-section preview-content">
+
+<h5 id="6具有代码块作用域的静态变量">（6）具有代码块作用域的静态变量</h5>
+
+<p>静态变量这一名称听起来很矛盾，像是一个不可变的变量。实际上，“静态”指的是变量的位置固定不变。具有文件作用域的变量自动（也是必须）具有静态存储时期。 <br>
+具有代码块作用域的静态变量具有代码块作用域，同时还是静态存储的局部变量，这些变量和自动变量具有相同的作用域，担当包含这些变量的函数完成工作时，它们并不会消失。也就是说，这些变量具有代码块作用域、空链接，却有静态存储时期。</p></div><div id="wmd-preview-section-45" class="wmd-preview-section preview-content">
+
+<h5 id="7具有外部链接的静态变量">（7）具有外部链接的静态变量</h5>
+
+<p>这种存储类的变量具有文件作用域、外部链接和静态存储时期。这一类型有时被称为外部存储类（external storage class），这一类型的变量称为外部变量（extenral variable）。</p>
+
+</div><div id="wmd-preview-section-883" class="wmd-preview-section preview-content">
+
+<h6 id="1外部变量的初始化">1、外部变量的初始化</h6>
+
+<p>和自动变量一样，外部变量可以被显示的初始化，如果您不对外部变量进行初始化，它们将自动被赋值为0，这一原则适用于外部定义的数组元素。并且职能使用常量来初始化外部变量。</p></div><div id="wmd-preview-section-47" class="wmd-preview-section preview-content">
+
+<h6 id="2定义和声明">2、定义和声明</h6>
+
+</div><div id="wmd-preview-section-2032" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">int</span> tern = <span class="hljs-number">1</span>;         <span class="hljs-comment">// 定义声明</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br><span class="hljs-comment line-number">3.</span>    <span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> tern; <span class="hljs-comment">// 引用声明</span><br><span class="hljs-comment line-number">4.</span>}<br></code></pre>
+
+<p>这里，tern声明了两次。第一次声明为变量留出了存储空间。它构成了变量的定义。第二次声明只是告诉编译器要使用先前定义的变量tern，因此不是一个定义。第一次声明称为定义声明（defining declartion），第二次声明称为引用声明（referencing declaration）。关键字external表明该声明不是一个定义，因为它指示编译器参考其他地方。 <br>
+如果这样做：</p></div><div id="wmd-preview-section-2064" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> tern;<br><span class="hljs-comment line-number">2.</span>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br><span class="hljs-comment line-number">3.</span>}<br></code></pre>
+
+<p>那么编译器假定tern的真正定义是在程序的其他地方，也许在另一个文件中。这样的声明不会引起空间分配。因此，不要使用extern来进行外部定义：只是用它来引用一个已经存在的外部定义。 <br>
+一个外部变量只可进行一次初始化，并且一定是在变量被定义时进行。下面的语句是错误的：</p></div><div id="wmd-preview-section-50" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span>     <span class="hljs-keyword">extern</span> chat permis = ‘Y’ <span class="hljs-comment">// 错误</span><br></code></pre>
+
+<p>因为关键字extern的存在标志着这是一个引用声明，而非定义声明。只有在定义声明的文件中才能对该变量进行初始化。</p>
+
+</div><div id="wmd-preview-section-2097" class="wmd-preview-section preview-content">
+
+<h6 id="3多文件中使用外部变量">3、多文件中使用外部变量</h6>
+
+<p>复杂的C程序往往使用多个独立的代码文件。有的时候，这些文件可能需要共享一个外部变量。ANSIC通过在一个文件中定义变量，在其他文件中引用声明这个变量来实现共享。也就是说，除了定义声明，其他所有声明都必须使用关键词extern。</p>
+
+<blockquote>
+  <p>注意：除非在第二个文件中也声明了该变量（通过引用声明），否则在一个文件中定义的外部变量不可以用于第二个文件。一个外部变量声明本身只是使一个变量可能对其他文件可用。</p>
+</blockquote></div><div id="wmd-preview-section-52" class="wmd-preview-section preview-content">
+
+<h6 id="4在c语言中定义常量">4、在C语言中定义常量</h6>
+
+</div><div id="wmd-preview-section-2161" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs d"><span class="hljs-comment line-number">1.</span><span class="hljs-comment">// macro.h</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-keyword">extern</span> <span class="hljs-built_in">char</span> * <span class="hljs-keyword">const</span> name;<br><span class="hljs-comment line-number">3.</span><span class="hljs-keyword">extern</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> age;<br><span class="hljs-comment line-number">4.</span><br><span class="hljs-comment line-number">5.</span><span class="hljs-comment">// macro.m</span><br><span class="hljs-comment line-number">6.</span><span class="hljs-built_in">char</span> * <span class="hljs-keyword">const</span> name = “name<span class="hljs-string">"<br><span class="hljs-comment line-number">7.</span>const int age = 23</span><br></code></pre></div><div id="wmd-preview-section-54" class="wmd-preview-section preview-content">
+
+<h5 id="8具有内部链接的静态变量">（8）具有内部链接的静态变量</h5>
+
+<p>这种存储类的变量具有静态存储时期、文件作用域以及内部链接。通过使用关键字static在所有函数外部进行定义来创建这样一个变量。如：</p>
+
+</div><div id="wmd-preview-section-55" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> dodgers = <span class="hljs-number">3</span>;<br></code></pre>
+
+<p>文件这一个类型的变量称为外部静态变量（external static）。普通的外部变量可以被程序的任一文件中所包含的函数使用，而具有内部链接的静态变量只可以被与它在同一个文件中的函数使用。可以在函数中使用关键字extern来再次声明任何具有文件作用域的变量。这样的声明并不会改变链接。如：</p>
+
+</div><div id="wmd-preview-section-1079" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">int</span> traveler = <span class="hljs-number">1</span>;       <span class="hljs-comment">// 外部链接</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> stayhome = <span class="hljs-number">1</span> <span class="hljs-comment">// 内部链接</span><br><span class="hljs-comment line-number">3.</span><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br><span class="hljs-comment line-number">4.</span>    <span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> traveler; <span class="hljs-comment">// 使用全局变量traveler</span><br><span class="hljs-comment line-number">5.</span>    <span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> stayhome; <span class="hljs-comment">// 使用全局变量stayhome</span><br><span class="hljs-comment line-number">6.</span>}<br></code></pre>
+
+<blockquote>
+  <p>注：说明符extern表明您在生命一个已经在别处定义了的变量。如果包含extern的声明具有文件作用域，所指向的变量必然具有外部链接。如果包含extern的声明具有代码作用域，所指向的变量可能是外部链接，也有可能是内部链接。</p>
+</blockquote></div><div id="wmd-preview-section-2196" class="wmd-preview-section preview-content">
+
+<h3 id="2函数作用域">2、函数作用域</h3>
+
+<p>一个函数默认是可以被另外的函数调用的，可以通过设置一些关键字来让函数不能被其他文件的函数调用。根据函数是否能被其他文件的函数调用，将函数区分为内部函数和外部函数。 <br>
+外部函数可以被其他文件的函数所使用，而静态函数只可以在定义它的文件中使用。外部函数和静态函数的声明如下：</p></div><div id="wmd-preview-section-58" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">gamma</span><span class="hljs-params">()</span></span>;        <span class="hljs-comment">// 默认为外部函数</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">beat</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">// 静态函数</span><br><span class="hljs-comment line-number">3.</span><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">double</span> <span class="hljs-title">delta</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 外部函数</span><br></code></pre>
+
+</div><div id="wmd-preview-section-59" class="wmd-preview-section preview-content">
+
+<h5 id="1静态函数">（1）静态函数</h5>
+
+<p>如果一个函数只能被本文件的函数所调用，它称为静态函数。定义静态函数时，在函数类型前面加关键字static，既：</p>
+
+</div><div id="wmd-preview-section-60" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs aspectj"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>;<br></code></pre>
+
+<p>静态函数的作用域只限本文件，在不同文件中有同名的静态函数，互不干扰，本文件调用本文件的静态函数，不会调用其他文件的静态函数。如果本文件的静态函数与其他文件的外部函数同名，优先调用本文件的静态函数。</p>
+
+</div><div id="wmd-preview-section-61" class="wmd-preview-section preview-content">
+
+<h5 id="2外部函数">（2）外部函数</h5>
+
+<p>如果一个函数只能可以被其他文件的函数所调用，它称为外部函数。定义外部函数时，在函数类型前面加关键字extern，既：</p>
+
+</div><div id="wmd-preview-section-62" class="wmd-preview-section preview-content">
+
+<pre class="prettyprint with-line-number hljs-light"><code class="hljs cpp"><span class="hljs-comment line-number">1.</span><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>;<br></code></pre>
+
+<p>在C语言中，如果没有指定函数的作用范围，则默认为外部函数，因此定义外部函数时extern也可以省略。</p></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
