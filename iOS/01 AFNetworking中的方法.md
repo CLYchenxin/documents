@@ -1,7 +1,7 @@
 #AFNetworking中的方法
 ###1、URLEncode
 
-``` obecect-c
+``` objective-c
 static NSString * AFPercentEscapedStringFromString(NSString *string) {
 	static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
 	static NSString * const kAFCharactersSubDelimitersToEncode = @"!$&'()*+,;=";
@@ -40,7 +40,7 @@ static NSString * AFPercentEscapedStringFromString(NSString *string) {
 
 ###2、Base64编码
 
-``` ocject-c
+``` objective-c
 static NSString * AFBase64EncodedStringFromString(NSString *string) {
     NSData *data = [NSData dataWithBytes:[string UTF8String] length:[string lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
     NSUInteger length = [data length];

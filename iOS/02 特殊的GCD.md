@@ -1,7 +1,7 @@
 #特殊的GCD
 ###1 dispath_semaphore_t
 
-``` object-c
+``` objective-c
 /*!
  *  讲block内容变同步;注：block内执行的线程和当前线程不能是同一线程
  */
@@ -29,7 +29,7 @@
 ```
 ###2 dispath_group_t
 
-``` object-c
+``` objective-c
 /*!
  *  执行多个block，并且在执行结束后执行自定义的一个block
  */
@@ -73,7 +73,7 @@
 
 ###4 主线程执行
 
-``` object-c
+``` objective-c
 #define dispatch_main_sync_safe(block)\
     if ([NSThread isMainThread]) {\
         block();\

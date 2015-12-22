@@ -2,7 +2,7 @@
 ###1 bug
 NSCache在收到 UIApplicationDidReceiveMemoryWarningNotification通知时，不会清除里面的数据，解决办法
 
-``` object-c
+``` objective-c
 @interface AutoPurgeCache : NSCache
 @end
 
@@ -27,7 +27,7 @@ NSCache在收到 UIApplicationDidReceiveMemoryWarningNotification通知时，不
 
 ###2 方法
 
-``` object-c
+``` objective-c
 下面这个例子，cache中不会多余10个数据
     self.cache = [[NSCache alloc] init];
     self.cache.delegate = self;
