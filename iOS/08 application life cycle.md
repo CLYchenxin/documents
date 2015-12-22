@@ -1,5 +1,5 @@
 # application life cycle
-![](D4E9053D-98AC-4DC6-9F7C-98248BF21463)
+<img src="https://raw.githubusercontent.com/CLYchenxin/documents/master/img/D4E9053D-98AC-4DC6-9F7C-98248BF21463.png" height="400">
 ***
 inactive:Run your code,but no UI events.<br>
 active:Run your code, receiving and processing UI events.<br>
