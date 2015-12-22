@@ -113,7 +113,7 @@ padding：设置内部间距
 #05 AlertDialog
 ###5.1 继承关系
      AlertDialog->Dialog->Object
-5.2 AlertDialog的常用方法
+###5.2 AlertDialog的常用方法
 
 ``` java
 // 启动并显示对话框，继承时使用onStart方法，不应该重写此方法
@@ -238,8 +238,7 @@ public Builder setSingleChoiceItems(ListAdapter adapter, int checkedItem, final 
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           style="@android:style/Widget.ProgressBar.Horizontal"
-          android:max="100"
-     />
+          android:max="100" />
 ```
 #07 ProgressDialog
 ###7.1 继承关系
@@ -302,7 +301,7 @@ void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser)
 ```
 #10 MutiAutoCompleteTextView
 ###10.1 继承关系
-	`MutiAutoCompleteTextView->AutoCompleteTextView->EditText->TextView->View->Object`<br>
+	MutiAutoCompleteTextView->AutoCompleteTextView->EditText->TextView->View->Object<br>
 功能：自动完成文本框控件
 ###10.2 xml中常用属性
 
@@ -365,7 +364,7 @@ ArrayAdapter.createFromResouce(Context context, int arrayRes, int layoutRes);
 SimpleAdapter适合于每一个列表项中含有不同的子控件,但SimpleAdapter只能包含图片和文本的控件
 
 ``` java
-     SimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to);
+SimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to);
 ```
 #14 ListView
 ###14.1 继承关系
