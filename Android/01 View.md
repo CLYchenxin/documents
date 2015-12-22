@@ -1,14 +1,25 @@
 [TOC]
 #01 TextView
 ###1.1 继承关系
-     MutiAutoCompleteTextView->AutoCompleteTextView->EditText->TextView->View->Object
-功能：自动完成文本框控件
+     TextView->View->Object
 ###1.2 xml中常用属性
-| 属性 | 功能 |
-|:--:|:--|
-|completionHint|设置出现在下拉菜单中的提示标题|
-|completionThreshold|设置用户输入多少字符后开始显示提示|
-|popuBackground|设置下拉菜单的背景|
+
+1. `autolink`:设置可链接的URL类型，类型包含web、email、phone
+* `hint`:设置提示字符串
+* `cursorVisible`:设置光标是否可见
+* `editable`:设置是否允许编辑
+* `gravity`:设置文本对其方式
+* `lineSpacingMultiplier`:设置行间距，如1.2
+* `lineSpacingExtra`:设置行间距，如3dp
+* `textColor`:字体颜色
+* `textSize`:字体大小
+* `textStyle`:设置字体样式：
+	* `normal`:正常
+	* `bold`:加粗
+	* `italic`:
+* `singleLine`:单行显示
+* `ellipsize`:文字显示不下时的省略号类型
+
 ###1.3 常用方法
 
 ``` java
@@ -28,44 +39,38 @@ performValidation();
 
 ###2.2 xml中常用属性
 
-| 属性 | 功能 |
-|:--:|:--|
-|inputType|设置键盘类型|
 
-其中InputType属性有下列常用选项：
+1. `inputType`:设置键盘类型
+	* `textAutoCorrect`、`textAutoComplete`:自动完成
+	* `textMultiLine`:多行输入
+	* `textNoSuggestions`:不提示
+	* `textEmailAddress`:电子邮件地址
+	* `textShortMessage`:短信息
+	* `textLongMessage`:长信息
+	* `textPersonName`:人名
+	* `textPassword`:密码
+	* `textVisiblePassword`:可见密码
+	* `textPhonetic`:拼音输入
+	* `numberSigned`:有符号数字格式
+	* `numberDecimal`:可带小数点的浮点格式
+	* `phone`:电话号码
+	* `datetime`:时间日期
+	* `date`:日期
+	* `time`:时间
 
-|InputType属性|功能|
-|:--|:--|
-|textAutoCorrect、textAutoComplete|自动完成|
-|textMultiLine|多行输入|
-|textNoSuggestions|不提示|
-|textEmailAddress|电子邮件地址|
-|textShortMessage|短信息|
-|textLongMessage|长信息|
-|textPersonName|人名|
-|textPassword|密码|
-|textVisiblePassword|可见密码|
-|textPhonetic|拼音输入|
-|numberSigned|有符号数字格式|
-|numberDecimal|可带小数点的浮点格式|
-|phone|电话号码|
-|datetime|时间日期|
-|date|日期|
-|time|时间|
 #03 Button
 ###3.1 继承关系
      Button->TextView->View->Object
 ###3.2 xml中常用属性
 
-|属性|功能|
-|:--:|:--|
-|drawableLeft||
-|drawableRigth||
-|drawableBottom||
-|drawableTop||
-|enable||
-background||
-3.3、背景样式
+1. `drawableLeft`
+* `drawableRigth`
+* `drawableBottom`
+* `drawableTop`
+* `enable`
+* `background`
+
+###3.3、背景样式
 
 创建xml文件，内容为：
 
@@ -95,20 +100,25 @@ background||
 </selector>
 ```
 
-solid：实心，就是填充的意思<br>
-android:color指定填充的颜色<br>
-gradient：渐变<br>
-android:startColor和android:endColor分别为起始和结束颜色，ndroid:angle是渐变角度，必须为45的整数倍。另外渐变默认的模式为android:type="linear"，即线性渐变，可以指定渐变为径向渐变，android:type="radial"，径向渐变需要指定半径android:gradientRadius="50"。<br>
-stroke：描边
-android:width="2dp" 描边的宽度，android:color 描边的颜色。
-我们还可以把描边弄成虚线的形式，设置方式为：
-android:dashWidth="5dp"
-android:dashGap="3dp"
-其中android:dashWidth表示'-'这样一个横线的宽度，android:dashGap表示之间隔开的距离。<br>
-corners：圆角
-android:radius为角的弧度，值越大角越圆。
-size：设置大小
-padding：设置内部间距
+1. `solid`:实心，就是填充的意思
+	* `android:color`:指定填充的颜色
+	* `gradient`:渐变
+		* `android:startColor`:起始颜色
+		* `android:endColor`:结束颜色，
+		* `android:angle`:是渐变角度，必须为45的整数倍。另外渐变默认的模式为
+		* `android:type="linear"`:即线性渐变，可以指定渐变为径向渐变，
+		* `android:type="radial"`:径向渐变需要指定半径
+			* `android:gradientRadius="50"`:渐变半径
+* `stroke`:描边
+	* `android:width="2dp"`:描边的宽度，
+	* `android:color`: 描边的颜色。
+	* `android:dashWidth="5dp"`:设置成虚线,表示'-'这样一个横线的宽度
+	* `android:dashGap="3dp"`:设置成虚线,表示之间隔开的距离
+* `corners`:圆角
+	* `android:radius`:为角的弧度，值越大角越圆。
+	* `size`:设置大小
+	* `padding`:设置内部间距
+
 #04 ImageView
 #05 AlertDialog
 ###5.1 继承关系
@@ -131,11 +141,9 @@ public void setCanceledOnTouchOutside(boolean cancel)
 ###5.3 AlertDialog.Builder类
 ####5.3.1 常用属性
 
-|属性|功能|
-|:--:|:--|
-|icon|对话框图标|
-|title|对话框标题|
-|message|对话框中显示的消息文本|     
+1. `icon`:对话框图标
+* `title`:对话框标题
+* `message`:对话框中显示的消息文本
              
 ####5.3.2 常用方法
 
@@ -205,30 +213,13 @@ public Builder setSingleChoiceItems(ListAdapter adapter, int checkedItem, final 
 ```
 #06 ProgressBar
 ###6.1 继承关系
-	Progress->View->Object
+	ProgressBar->View->Object
 ###6.2 xml中常用属性
 
-| 属性 | 功能 |
-|:--:|:--|
-|max|                         设置进度条的最大值|
-|progress|                    设置已完成的进度值|
-|secondaryProgress|           设置第二进度条|
-|progressDrawable|            设置进度条的轨道绘制形式|
-|progressBarStyle|            设置进度条样式|
-|progressBarStyleHorizontal|  设置水平进度条样式|
-|progressBarStyleLarge|       设置大进度条样式|
-|progressBarStyleSmall|       设置小进度条样式|
-
->注：progressBar的style有如下值：
->
-| 属性 | 功能 |
-|:--:|:--|
-|horizontal|                  水平进度条|
-|inverse|                     不断跳跃、旋转的进度条|
-|large|                       大进度条|
-|large.inverse|               不断跳跃、旋转的大进度条|
-|small|                       小进度条|
-|small.inverse|               不断跳跃、旋转的小进度条|
+1. max:                        设置进度条的最大值
+* progress:                    设置已完成的进度值
+* secondaryProgress:           设置第二进度条
+* progressDrawable:            设置进度条的轨道绘制形式
 
 设置样式如下：
 
@@ -288,10 +279,9 @@ void onStopTrackingTouch(SeekBar seekBar)
      RatingBar->AbsSeekBar->ProgressBar->View->Object
 ###9.2 xml中常用属性
 
-|属性|功能|
-|:--:|:--|
-|numStars| 星的数量|
-|stepSize| 星变化的步长，可以是小数|
+1. `numStars`:星的数量
+* `stepSize`:星变化的步长，可以是小数
+
 ###9.3 常用方法
 `setOnRatingBarChangeLisener();`
 ###9.4 OnRatingBarChangeListener接口
@@ -305,11 +295,10 @@ void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser)
 功能：自动完成文本框控件
 ###10.2 xml中常用属性
 
-|属性|功能|
-|:--:|:--|
-|completionHint|       设置出现在下拉菜单中的提示标题|
-|completionThreshold|  设置用户输入多少字符后开始显示提示|
-|popuBackground|       设置下拉菜单的背景|
+
+1. `completionHint`:       设置出现在下拉菜单中的提示标题
+* `completionThreshold`:  设置用户输入多少字符后开始显示提示
+* `popuBackground`:       设置下拉菜单的背景
 
 ###10.3 常用方法
 
@@ -326,10 +315,10 @@ performValidation();
 ###11.1 继承关系
 	ScrollView->FrameLayout->ViewGroup->View->Object
 ###11.2 xml中常用属性
-|属性|功能|
-|:--:|:--|
-|scrollbarThumbVertical| 设置滚动条颜色|
-|scrollbarTrackVertical| 设置滚动条颜色|
+
+1. `scrollbarThumbVertical`:设置滚动条颜色
+* `scrollbarTrackVertical`:设置滚动条颜色
+
 #12 HorizontalScrollView
 ###12.1 继承关系
 	HorizontalScrollView->FrameLayout->ViewGroup->View->Object
@@ -370,12 +359,15 @@ SimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource
 ###14.1 继承关系
 	ListView->AbsListView->AdapterView->ViewGroup->View->Object
 ###14.2 xml中常用属性
-|属性|功能|
-|:--:|:--|
-|choiceModel|             选择方式：none、SingleChoice、MultipleChoice
-|divider|                 设置分隔条，可以是颜色、图片
-|dividerHeight|           设置分隔条的高度值
-|entries|                 设置显示的内容，为字符串数组
+
+1. `choiceModel`:选择方式
+	* `none`
+	* `SingleChoice`
+	* `MultipleChoice`
+* `divider`:                 设置分隔条，可以是颜色、图片
+* `dividerHeight`:           设置分隔条的高度值
+* `entries`:                 设置显示的内容，为字符串数组
+
 ###14.3 常用方法
 
 ``` java
@@ -395,35 +387,26 @@ boolean setOnItemLongClickListener(Context context);
 	ListView->AbsListView->AdapterView->ViewGroup->View->Object
 ###15.2 xml中常用属性
 
-|属性|功能|
-|:--:|:--|
-columWidth|            设置列宽度
-gravity |              设置对其方式
-horizontalSpacing|     设置水平间距
-numColumns   |         设置列数
-stretchMode   |        设置拉伸模式
-verticalSpacing|       设置垂直间距
-
->注：
->stretchMode有一下可选值：
->
-|属性|功能|
-|:--:|:--|
-`NO_STRETCH`|                  不拉伸
-`STRETCH_SPACING`|             仅拉伸元素之间的间距
-`STRETCH_SPACING_UNIFORM`|     表格原色本身、元素之间的间距一起拉伸
-`STRETCH_SPACING_WIDTH` |      仅拉伸表格元素本身
+1. `columWidth`            :设置列宽度
+* `gravity`                :设置对其方式
+* `horizontalSpacing`      :设置水平间距
+* `numColumns`             :设置列数
+* `stretchMode`            :设置拉伸模式
+	* `NO_STRETCH`                  :不拉伸
+	* `STRETCH_SPACING`             :仅拉伸元素之间的间距
+	* `STRETCH_SPACING_UNIFORM`     :表格原色本身、元素之间的间距一起拉伸
+	* `STRETCH_SPACING_WIDTH`       :仅拉伸表格元素本身
+* `verticalSpacing`        :设置垂直间距
 
 #16 Gallery(水平列表)
 ###16.1 继承关系
 	Gallery->AbsSpinner->AdapterView->ViewGroup->View->Object
 ###16.2 xml中
 
-|属性|功能|
-|:--:|:--|
-gravity  |                  设置对齐方式
-spacing   |                 设置列表项之间的间距
-unselectedAlpha|            设置未选中的列表项的透明度
+1. gravity                    :设置对齐方式
+* spacing                     :设置列表项之间的间距
+* unselectedAlpha             :设置未选中的列表项的透明度
+
 ###16.3 常用方法
 
 ``` java
@@ -443,11 +426,12 @@ boolean setOnItemLongClickListener(Context context);
 	Spinner->AbsSpinner->AdapterView->ViewGroup->View->Object
 ###17.2 xml中的常用属性
 
-|属性|功能|
-|:--:|:--|
-entries  |             下拉列表框的内容
-spinnerMode|           下拉列表的风格，对话框风格：dialog；下拉列表风格：dropdown
-prompt      |          下拉列表的提示标题，只有在dialog风格才会显示
+1. entries               :下拉列表框的内容
+* spinnerMode            :下拉列表的风格，
+	* dialog							:对话框风格
+	* dropdown						:下拉列表风格
+* prompt                 :下拉列表的提示标题，只有在dialog风格才会显示
+
 ###17.3 常用方法
 
 ``` java
@@ -465,7 +449,8 @@ void noNothingSelected(AdapterView<?> parent);
 ###18.1 继承关系
 
 ###18.2 xml中常用属性
-|属性|功能|
-|:--:|:--|
-checkMark   |          设置ListView的显示风格，?android:attr/ListChoiceIndicatorSingle,?android:attr/ListChoiceIndicatorMultipl
+
+1. checkMark:设置ListView的显示风格，
+	* ?android:attr/*ListChoiceIndicatorSingle
+	* ?android:attr/ListChoiceIndicatorMultipl
 
