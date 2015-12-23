@@ -216,10 +216,10 @@ public Builder setSingleChoiceItems(ListAdapter adapter, int checkedItem, final 
 	ProgressBar->View->Object
 ###6.2 xml中常用属性
 
-1. max:                        设置进度条的最大值
-* progress:                    设置已完成的进度值
-* secondaryProgress:           设置第二进度条
-* progressDrawable:            设置进度条的轨道绘制形式
+1. `max`:                        设置进度条的最大值
+* `progress`:                    设置已完成的进度值
+* `secondaryProgress`:           设置第二进度条
+* `progressDrawable`:            设置进度条的轨道绘制形式
 
 设置样式如下：
 
@@ -388,24 +388,24 @@ boolean setOnItemLongClickListener(Context context);
 ###15.2 xml中常用属性
 
 1. `columWidth`            :设置列宽度
-* `gravity`                :设置对其方式
-* `horizontalSpacing`      :设置水平间距
-* `numColumns`             :设置列数
-* `stretchMode`            :设置拉伸模式
+2. `gravity`                :设置对其方式
+3. `horizontalSpacing`      :设置水平间距
+4. `numColumns`             :设置列数
+5. `stretchMode`            :设置拉伸模式
 	* `NO_STRETCH`                  :不拉伸
 	* `STRETCH_SPACING`             :仅拉伸元素之间的间距
 	* `STRETCH_SPACING_UNIFORM`     :表格原色本身、元素之间的间距一起拉伸
 	* `STRETCH_SPACING_WIDTH`       :仅拉伸表格元素本身
-* `verticalSpacing`        :设置垂直间距
+6. `verticalSpacing`        :设置垂直间距
 
 #16 Gallery(水平列表)
 ###16.1 继承关系
 	Gallery->AbsSpinner->AdapterView->ViewGroup->View->Object
 ###16.2 xml中
 
-1. gravity                    :设置对齐方式
-* spacing                     :设置列表项之间的间距
-* unselectedAlpha             :设置未选中的列表项的透明度
+1. `gravity`                    :设置对齐方式
+2. `spacing`                     :设置列表项之间的间距
+3. `unselectedAlpha`             :设置未选中的列表项的透明度
 
 ###16.3 常用方法
 
@@ -426,11 +426,11 @@ boolean setOnItemLongClickListener(Context context);
 	Spinner->AbsSpinner->AdapterView->ViewGroup->View->Object
 ###17.2 xml中的常用属性
 
-1. entries               :下拉列表框的内容
-* spinnerMode            :下拉列表的风格，
-	* dialog							:对话框风格
-	* dropdown						:下拉列表风格
-* prompt                 :下拉列表的提示标题，只有在dialog风格才会显示
+1. `entries`               :下拉列表框的内容
+* `spinnerMode`            :下拉列表的风格，
+	* `dialog`						:对话框风格
+	* `dropdown`					:下拉列表风格
+* `prompt`                 :下拉列表的提示标题，只有在dialog风格才会显示
 
 ###17.3 常用方法
 
@@ -450,7 +450,7 @@ void noNothingSelected(AdapterView<?> parent);
 
 ###18.2 xml中常用属性
 
-1. checkMark:设置ListView的显示风格，
-	* ?android:attr/*ListChoiceIndicatorSingle
-	* ?android:attr/ListChoiceIndicatorMultipl
+1. `checkMark`:设置ListView的显示风格，
+	* `?android:attr/ListChoiceIndicatorSingle`
+	* `?android:attr/ListChoiceIndicatorMultipl`
 
